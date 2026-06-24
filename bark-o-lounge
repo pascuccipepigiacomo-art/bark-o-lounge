@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bark o' Lounge — Playcare for Little Big Dogs · Vashon Island, WA</title>
+  <meta name="description" content="Intimate dog daycare and weekend boarding on Vashon Island. Max 4 dogs. A place where every pup is a regular. Playcare from $20." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --night:    #0F2A30;
+      --deep:     #1C3D45;
+      --amber:    #E8A020;
+      --amber-lt: #F5C76A;
+      --sage:     #7BA08C;
+      --parch:    #F5EED8;
+      --parch-dk: #EAE0C4;
+      --rust:     #C4622D;
+      --text:     #1A1A1A;
+      --text-lt:  #5A5A5A;
+      --white:    #FDFAF4;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      background: var(--parch);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--night);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem;
+      height: 60px;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--amber);
+      letter-spacing: 0.03em;
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex; gap: 2rem; list-style: none;
+    }
+    .nav-links a {
+      color: var(--parch); text-decoration: none;
+      font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em;
+      text-transform: uppercase; opacity: 0.8;
+      transition: opacity 0.2s, color 0.2s;
+    }
+    .nav-links a:hover { opacity: 1; color: var(--amber); }
+    .nav-cta {
+      background: var(--amber); color: var(--night) !important;
+      padding: 0.45rem 1.1rem; border-radius: 4px;
+      font-weight: 600 !important; opacity: 1 !important;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--amber-lt) !important; }
+
+    /* hamburger */
+    .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+    .hamburger span {
+      display: block; width: 22px; height: 2px; background: var(--parch);
+      margin: 5px 0; transition: all 0.3s;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      background: var(--night);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    /* subtle paw-print background pattern */
+    #hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(232,160,32,0.06) 2px, transparent 2px);
+      background-size: 48px 48px;
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--sage);
+      margin-bottom: 1.2rem;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 0.95;
+      margin-bottom: 0.4rem;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--amber);
+      display: block;
+    }
+    .hero-sub {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1rem, 2.5vw, 1.5rem);
+      font-weight: 400; font-style: italic;
+      color: var(--parch); opacity: 0.7;
+      margin-bottom: 2.5rem;
+    }
+
+    /* Dog lounging SVG */
+    .dog-lounge {
+      width: min(220px, 55vw);
+      margin: 2rem auto;
+      filter: drop-shadow(0 0 32px rgba(232,160,32,0.12));
+    }
+
+    .hero-badges {
+      display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center;
+      margin-bottom: 3rem;
+    }
+    .badge {
+      border: 1.5px solid rgba(232,160,32,0.35);
+      color: var(--parch); font-size: 0.8rem; font-weight: 400;
+      padding: 0.35rem 0.9rem; border-radius: 2rem;
+      letter-spacing: 0.02em;
+    }
+    .hero-cta {
+      display: inline-block;
+      background: var(--amber); color: var(--night);
+      font-weight: 700; font-size: 1rem;
+      padding: 1rem 2.5rem; border-radius: 6px;
+      text-decoration: none; letter-spacing: 0.02em;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .hero-cta:hover { background: var(--amber-lt); transform: translateY(-2px); }
+    .hero-scroll {
+      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      color: var(--parch); opacity: 0.35; font-size: 0.7rem; letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .hero-scroll::after {
+      content: '';
+      display: block; width: 1px; height: 32px;
+      background: var(--parch); opacity: 0.4;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 6rem 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    .section-eyebrow {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--rust);
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700; line-height: 1.1;
+      color: var(--night);
+      margin-bottom: 1.5rem;
+    }
+    .section-title em { font-style: italic; color: var(--rust); }
+    .lead {
+      font-size: 1.1rem; line-height: 1.75;
+      color: var(--text-lt); max-width: 60ch;
+    }
+
+    /* ── ABOUT ── */
+    #about { background: var(--parch); }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: center;
+    }
+    .about-image-block {
+      position: relative;
+    }
+    .about-card {
+      background: var(--deep);
+      border-radius: 8px;
+      padding: 3rem 2.5rem;
+      color: var(--white);
+    }
+    .stat-row {
+      display: flex; gap: 2rem; margin-top: 2rem; flex-wrap: wrap;
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem; font-weight: 900;
+      color: var(--amber); display: block;
+    }
+    .stat-label { font-size: 0.78rem; opacity: 0.7; letter-spacing: 0.05em; }
+    .about-text { }
+    .about-text .lead { margin-bottom: 1.5rem; }
+    .island-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--parch-dk); border-radius: 4px;
+      padding: 0.6rem 1.1rem;
+      font-size: 0.82rem; color: var(--night); font-weight: 500;
+    }
+
+    /* ── SERVICES ── */
+    #services { background: var(--night); }
+    #services .section-title { color: var(--white); }
+    #services .section-eyebrow { color: var(--amber); }
+    #services .lead { color: rgba(245,238,216,0.65); }
+
+    .pricing-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem; margin-top: 3rem;
+    }
+    .price-card {
+      background: var(--deep);
+      border: 1px solid rgba(232,160,32,0.15);
+      border-radius: 8px; padding: 2rem 1.75rem;
+      position: relative; overflow: hidden;
+      transition: border-color 0.25s, transform 0.2s;
+    }
+    .price-card:hover { border-color: rgba(232,160,32,0.5); transform: translateY(-3px); }
+    .price-card.featured {
+      border-color: var(--amber);
+      background: linear-gradient(135deg, var(--deep), #254050);
+    }
+    .price-card.featured::before {
+      content: 'Most Popular';
+      position: absolute; top: 1rem; right: 1rem;
+      background: var(--amber); color: var(--night);
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 3px;
+    }
+    .price-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .price-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem; font-weight: 700;
+      color: var(--white); margin-bottom: 0.4rem;
+    }
+    .price-desc { font-size: 0.85rem; color: rgba(245,238,216,0.55); margin-bottom: 1.5rem; line-height: 1.6; }
+    .price-amount {
+      display: flex; align-items: baseline; gap: 0.25rem;
+    }
+    .price-dollar {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem; font-weight: 900; color: var(--amber);
+    }
+    .price-unit { font-size: 0.8rem; color: rgba(245,238,216,0.5); }
+    .price-alt {
+      font-size: 0.8rem; color: var(--sage); margin-top: 0.3rem;
+    }
+
+    /* ── RULES ── */
+    #rules { background: var(--parch-dk); }
+    .rules-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 2rem; margin-top: 2.5rem;
+    }
+    .rule-item {
+      display: flex; gap: 1rem; align-items: flex-start;
+    }
+    .rule-icon {
+      width: 40px; height: 40px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0;
+    }
+    .rule-icon.green { background: rgba(123,160,140,0.2); }
+    .rule-icon.amber { background: rgba(232,160,32,0.15); }
+    .rule-icon.red   { background: rgba(196,98,45,0.15); }
+    .rule-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.3rem; color: var(--night); }
+    .rule-text  { font-size: 0.87rem; color: var(--text-lt); line-height: 1.6; }
+
+    /* ── LOCATION ── */
+    #location { background: var(--night); }
+    #location .section-title { color: var(--white); }
+    #location .section-eyebrow { color: var(--amber); }
+    .location-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: start; margin-top: 3rem;
+    }
+    .location-detail {
+      display: flex; gap: 1rem; margin-bottom: 1.75rem; align-items: flex-start;
+    }
+    .loc-icon {
+      width: 36px; height: 36px; background: rgba(232,160,32,0.15);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+    }
+    .loc-label { font-size: 0.7rem; color: var(--sage); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.25rem; }
+    .loc-value { font-size: 0.95rem; color: var(--white); line-height: 1.5; }
+    .loc-value a { color: var(--amber-lt); text-decoration: none; }
+    .loc-value a:hover { text-decoration: underline; }
+
+    .map-embed {
+      border-radius: 8px; overflow: hidden;
+      border: 1px solid rgba(232,160,32,0.2);
+    }
+    .map-embed iframe {
+      width: 100%; height: 320px; border: none; display: block;
+    }
+    .rover-banner {
+      background: linear-gradient(135deg, var(--deep), #1A3540);
+      border: 1px solid rgba(232,160,32,0.25);
+      border-radius: 8px; padding: 1.5rem 2rem;
+      display: flex; align-items: center; gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .rover-banner .r-icon { font-size: 2rem; }
+    .rover-title { font-weight: 600; color: var(--white); margin-bottom: 0.2rem; }
+    .rover-sub { font-size: 0.82rem; color: rgba(245,238,216,0.55); }
+    .rover-link {
+      margin-left: auto; background: var(--amber); color: var(--night);
+      font-weight: 700; font-size: 0.82rem; padding: 0.6rem 1.2rem;
+      border-radius: 4px; text-decoration: none; white-space: nowrap;
+      transition: background 0.2s;
+    }
+    .rover-link:hover { background: var(--amber-lt); }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--parch); }
+    .contact-box {
+      background: var(--deep); border-radius: 10px;
+      padding: 4rem 3rem; text-align: center; max-width: 640px; margin: 0 auto;
+    }
+    .contact-box .section-title { color: var(--white); }
+    .contact-box .lead { color: rgba(245,238,216,0.65); margin: 0 auto 2rem; }
+    .contact-phone {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900;
+      color: var(--amber); text-decoration: none;
+      display: block; margin-bottom: 0.5rem;
+      transition: color 0.2s;
+    }
+    .contact-phone:hover { color: var(--amber-lt); }
+    .contact-note { font-size: 0.8rem; color: rgba(245,238,216,0.4); margin-bottom: 2rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #091820;
+      padding: 2.5rem 2rem;
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem; font-weight: 700;
+      color: var(--amber); margin-bottom: 0.75rem;
+    }
+    .footer-text { font-size: 0.78rem; color: rgba(245,238,216,0.35); line-height: 1.8; }
+    .footer-divider { width: 40px; height: 1px; background: rgba(232,160,32,0.25); margin: 1rem auto; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; flex-direction: column; position: absolute;
+        top: 60px; left: 0; right: 0; background: var(--night);
+        padding: 1.5rem 2rem; gap: 1.25rem; }
+      .nav-links.open { display: flex; }
+      .hamburger { display: block; }
+      .about-grid, .rules-grid, .location-grid { grid-template-columns: 1fr; gap: 2rem; }
+      section { padding: 4rem 1.5rem; }
+      .contact-box { padding: 2.5rem 1.5rem; }
+      .rover-banner { flex-wrap: wrap; }
+      .rover-link { margin-left: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a class="nav-logo" href="#hero">Bark o' Lounge</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#rules">House Rules</a></li>
+    <li><a href="#location">Location</a></li>
+    <li><a href="#contact" class="nav-cta">Call Us</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <p class="hero-eyebrow">Vashon Island · Est. on the Good Side of the Ferry</p>
+  <h1 class="hero-title">
+    Bark o'
+    <em>Lounge</em>
+  </h1>
+  <p class="hero-sub">Playcare for Little Big Dogs</p>
+
+  <!-- Retro emblem badge -->
+  <div class="dog-lounge" aria-hidden="true">
+    <svg viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <path id="topArc"    d="M 50,140 a 90,90 0 0,1 180,0"/>
+        <path id="bottomArc" d="M 58,158 a 82,82 0 0,0 164,0"/>
+      </defs>
+
+      <!-- outer ring -->
+      <circle cx="140" cy="140" r="126" fill="none" stroke="#E8A020" stroke-width="1.5" opacity="0.25"/>
+      <!-- inner ring -->
+      <circle cx="140" cy="140" r="112" fill="none" stroke="#E8A020" stroke-width="1" opacity="0.18"/>
+      <!-- filled disc -->
+      <circle cx="140" cy="140" r="108" fill="#1C3D45"/>
+      <!-- subtle inner glow ring -->
+      <circle cx="140" cy="140" r="108" fill="none" stroke="#E8A020" stroke-width="2" opacity="0.35"/>
+
+      <!-- curved top text: BARK O' LOUNGE -->
+      <text font-family="Georgia, serif" font-size="13.5" font-weight="bold"
+            fill="#E8A020" letter-spacing="4" text-anchor="middle">
+        <textPath href="#topArc" startOffset="50%">BARK O' LOUNGE</textPath>
+      </text>
+
+      <!-- curved bottom text: VASHON ISLAND · WA -->
+      <text font-family="Georgia, serif" font-size="11" font-weight="normal"
+            fill="#7BA08C" letter-spacing="3.5" text-anchor="middle">
+        <textPath href="#bottomArc" startOffset="50%">VASHON ISLAND · WA</textPath>
+      </text>
+
+      <!-- centre decorative line pair -->
+      <line x1="72" y1="108" x2="208" y2="108" stroke="#E8A020" stroke-width="0.75" opacity="0.3"/>
+      <line x1="72" y1="172" x2="208" y2="172" stroke="#E8A020" stroke-width="0.75" opacity="0.3"/>
+
+      <!-- large paw print centrepiece -->
+      <!-- main pad -->
+      <ellipse cx="140" cy="152" rx="22" ry="18" fill="#E8A020" opacity="0.9"/>
+      <!-- toe pads -->
+      <ellipse cx="112" cy="132" rx="11" ry="9"  fill="#E8A020" opacity="0.75" transform="rotate(-18 112 132)"/>
+      <ellipse cx="136" cy="124" rx="11" ry="9"  fill="#E8A020" opacity="0.75"/>
+      <ellipse cx="161" cy="126" rx="11" ry="9"  fill="#E8A020" opacity="0.75" transform="rotate(12 161 126)"/>
+      <ellipse cx="182" cy="140" rx="10" ry="8.5" fill="#E8A020" opacity="0.7"  transform="rotate(30 182 140)"/>
+
+      <!-- subtle star ornaments -->
+      <text x="88"  y="153" font-size="9" fill="#7BA08C" opacity="0.5" text-anchor="middle">✦</text>
+      <text x="192" y="153" font-size="9" fill="#7BA08C" opacity="0.5" text-anchor="middle">✦</text>
+
+      <!-- tagline centre -->
+      <text x="140" y="186" font-family="Georgia, serif" font-size="9.5"
+            fill="rgba(245,238,216,0.45)" letter-spacing="2.5" text-anchor="middle"
+            font-style="italic">Playcare for Little Big Dogs</text>
+    </svg>
+  </div>
+
+  <div class="hero-badges">
+    <span class="badge">🐾 Max 4 Dogs</span>
+    <span class="badge">🏡 Vashon Island</span>
+    <span class="badge">☁️ Covered Wet Weather Shelter</span>
+    <span class="badge">🐱 Cat-Friendly Household</span>
+    <span class="badge">⭐ Reviewed on Rover</span>
+  </div>
+
+  <a href="#contact" class="hero-cta">Book a Spot</a>
+
+  <div class="hero-scroll" aria-hidden="true">scroll</div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-card">
+        <p class="section-eyebrow" style="color:var(--amber);">Our Philosophy</p>
+        <p style="font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:700; color:var(--white); line-height:1.2; margin-bottom:1rem;">
+          Small on purpose.<br>Big on care.
+        </p>
+        <p style="font-size:0.88rem; color:rgba(245,238,216,0.65); line-height:1.8;">
+          We deliberately cap at four client dogs at a time. Not because we have to — because we choose to. Every dog gets to be a regular, not a number.
+        </p>
+        <div class="stat-row">
+          <div class="stat">
+            <span class="stat-num">4</span>
+            <span class="stat-label">Max dogs<br>per day</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">4</span>
+            <span class="stat-label">Days/week<br>playcare</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">1</span>
+            <span class="stat-label">Island.<br>Your dog's island.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-text">
+        <p class="section-eyebrow">About Us</p>
+        <h2 class="section-title">A canine social<br><em>club with a heart</em></h2>
+        <p class="lead">
+          Tucked in the north end of Vashon Island, Bark o' Lounge is a home-based daycare set on a large, fully secured compound with covered shelter for those classic Pacific Northwest drizzle days.
+        </p>
+        <p class="lead" style="margin-top:1rem;">
+          We share our home with cats, so we look for dogs that are relaxed around other animals. What you'll find here is a calm, supervised environment where dogs play, nap, and feel genuinely at ease.
+        </p>
+        <div style="margin-top:1.75rem;">
+          <span class="island-tag">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+            North of Vashon Town · 10218 SW 140th St, Vashon WA 98070
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES ── -->
+<section id="services">
+  <div class="container">
+    <p class="section-eyebrow">Pricing</p>
+    <h2 class="section-title">Simple rates.<br>No surprises.</h2>
+    <p class="lead">All services are by arrangement — call us and we'll find the right fit for your pup.</p>
+
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-icon">🌤</div>
+        <div class="price-name">Half Day Playcare</div>
+        <div class="price-desc">A shorter session, perfect for pups who need a midday social fix. Available 4 days a week.</div>
+        <div class="price-amount">
+          <span class="price-dollar">$20</span>
+          <span class="price-unit">/ half day</span>
+        </div>
+      </div>
+
+      <div class="price-card featured">
+        <div class="price-icon">☀️</div>
+        <div class="price-name">Full Day Playcare</div>
+        <div class="price-desc">A full day of supervised play, rest, and island calm. Our most popular option for working pet parents.</div>
+        <div class="price-amount">
+          <span class="price-dollar">$35</span>
+          <span class="price-unit">/ full day</span>
+        </div>
+      </div>
+
+      <div class="price-card">
+        <div class="price-icon">🌙</div>
+        <div class="price-name">Weekend Boarding</div>
+        <div class="price-desc">For socialized, housebroken dogs only. Your pup stays the weekend in a home — not a kennel.</div>
+        <div class="price-amount">
+          <span class="price-dollar">$65</span>
+          <span class="price-unit">/ night</span>
+        </div>
+      </div>
+
+      <div class="price-card">
+        <div class="price-icon">🌆</div>
+        <div class="price-name">End-of-Day Drop Off</div>
+        <div class="price-desc">A dedicated late-day service for when your schedule runs long. Flexible and low-stress.</div>
+        <div class="price-amount">
+          <span class="price-dollar">$15</span>
+          <span class="price-unit">/ drop off</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── RULES ── -->
+<section id="rules">
+  <div class="container">
+    <p class="section-eyebrow">House Rules</p>
+    <h2 class="section-title">What makes<br><em>a good fit</em></h2>
+    <p class="lead">Our small size means the right match matters. Here's what we ask.</p>
+
+    <div class="rules-grid">
+      <div class="rule-item">
+        <div class="rule-icon green">🐾</div>
+        <div>
+          <div class="rule-title">Socialized dogs welcome</div>
+          <div class="rule-text">Your dog should be comfortable around other dogs and people. We'll have a quick chat before your first booking.</div>
+        </div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-icon green">🏠</div>
+        <div>
+          <div class="rule-title">Housebroken (for boarding)</div>
+          <div class="rule-text">Weekend boarding guests must be housebroken. Day playcare is more flexible — give us a call.</div>
+        </div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-icon amber">🐱</div>
+        <div>
+          <div class="rule-title">Cats live here</div>
+          <div class="rule-text">Our cats are part of the household. Dogs with a high prey drive toward cats are not a good fit for our home.</div>
+        </div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-icon green">🌿</div>
+        <div>
+          <div class="rule-title">Space to run and rest</div>
+          <div class="rule-text">Our large secured compound has both open-run space and a covered shelter — ideal for PNW weather days.</div>
+        </div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-icon red">⚠️</div>
+        <div>
+          <div class="rule-title">No high prey drive dogs</div>
+          <div class="rule-text">Please be honest about your dog's behavior around small animals. Safety is always our first priority.</div>
+        </div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-icon amber">📞</div>
+        <div>
+          <div class="rule-title">Always book in advance</div>
+          <div class="rule-text">We cap at 4 dogs, which means spots fill up. A quick call goes a long way — we love to chat about your pup.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── LOCATION ── -->
+<section id="location">
+  <div class="container">
+    <p class="section-eyebrow">Find Us</p>
+    <h2 class="section-title">Worth the ferry ride.</h2>
+
+    <div class="location-grid">
+      <div>
+        <div class="location-detail">
+          <div class="loc-icon">📍</div>
+          <div>
+            <div class="loc-label">Address</div>
+            <div class="loc-value">10218 SW 140th St<br>Vashon, WA 98070<br><small style="opacity:0.55;">(North of Vashon Town)</small></div>
+          </div>
+        </div>
+        <div class="location-detail">
+          <div class="loc-icon">📞</div>
+          <div>
+            <div class="loc-label">Phone</div>
+            <div class="loc-value"><a href="tel:+12069095339">(206) 909-5339</a></div>
+          </div>
+        </div>
+        <div class="location-detail">
+          <div class="loc-icon">🗓</div>
+          <div>
+            <div class="loc-label">Playcare Days</div>
+            <div class="loc-value">4 days per week<br><small style="opacity:0.55;">Call to confirm current schedule</small></div>
+          </div>
+        </div>
+        <div class="location-detail">
+          <div class="loc-icon">⛴</div>
+          <div>
+            <div class="loc-label">Getting Here</div>
+            <div class="loc-value">Take the Fauntleroy–Vashon ferry from West Seattle. We're on the north side of the island.</div>
+          </div>
+        </div>
+
+        <div class="rover-banner">
+          <div class="r-icon">⭐</div>
+          <div>
+            <div class="rover-title">See our reviews on Rover</div>
+            <div class="rover-sub">Real feedback from Vashon pet parents</div>
+          </div>
+          <a href="https://www.rover.com" target="_blank" rel="noopener" class="rover-link">View Reviews →</a>
+        </div>
+      </div>
+
+      <div class="map-embed">
+        <iframe
+          title="Bark o' Lounge location on Vashon Island"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2699.5!2d-122.46!3d47.44!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549045e09f60af6d%3A0x29211f1f048e48fe!2s10218%20SW%20140th%20St%2C%20Vashon%2C%20WA%2098070!5e0!3m2!1sen!2sus!4v1"
+          allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-box">
+      <p class="section-eyebrow" style="color:var(--amber);">Get in Touch</p>
+      <h2 class="section-title">Ready to book<br>a spot?</h2>
+      <p class="lead">
+        We keep it personal. Give us a call and we'll talk through whether Bark o' Lounge is the right fit for your dog.
+      </p>
+      <a href="tel:+12069095339" class="contact-phone">(206) 909-5339</a>
+      <p class="contact-note">Available during daycare hours · Vashon Island, WA</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-logo">Bark o' Lounge</div>
+  <div class="footer-divider"></div>
+  <p class="footer-text">
+    Playcare for Little Big Dogs · Vashon Island, Washington<br>
+    10218 SW 140th St, Vashon WA 98070 · <a href="tel:+12069095339" style="color:rgba(245,238,216,0.5); text-decoration:none;">(206) 909-5339</a><br><br>
+    ⚠️ <em>Note: Cats reside here. Not suitable for dogs with high prey drive.</em><br>
+    See our reviews on <a href="https://www.rover.com" target="_blank" rel="noopener" style="color:rgba(232,160,32,0.6); text-decoration:none;">Rover</a>
+  </p>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const navLinks  = document.getElementById('navLinks');
+  hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a =>
+    a.addEventListener('click', () => navLinks.classList.remove('open'))
+  );
+</script>
+</body>
+</html>
